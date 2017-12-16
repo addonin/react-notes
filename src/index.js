@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
+import {HashRouter} from 'react-router-dom';
 
 import App from './App';
 import ItemReducer from './reducers/ItemReducer';
@@ -23,7 +24,9 @@ export const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <HashRouter>
+            <App/>
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );

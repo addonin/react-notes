@@ -1,47 +1,26 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Route, Switch} from "react-router-dom";
+
+import Main from "./components/Main";
+import EditItem from './components/edit/EditItem'
 
 import './App.css';
 
-import Search from './components/search/Search';
-import CreateItem from "./components/create-item/CreateItem";
-import Items from "./components/items/Items";
-
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.onAddItem = this.onAddItem.bind(this);
     }
 
     render() {
         return (
             <div>
-                <Search/>
-                <CreateItem onAdd={this.onAddItem}/>
-                <Items/>
+                <Switch>
+                    <Route path="/" exact component={Main}/>
+                    <Route path="/edit/:id" component={EditItem}/>
+                </Switch>
             </div>
         );
     }
 
-    onAddItem(text) {
-        this.props.addItem(text);
-    }
-
 }
-
-function mapDispatchToProps(dispatch) {
-    return {
-        addItem: (text) => {
-            dispatch({
-                type: 'ADD_ITEM',
-                payload: {
-                    id: Date.now(),
-                    title: text
-                }
-            });
-        }
-    }
-}
-
-export default connect(null, mapDispatchToProps)(App);

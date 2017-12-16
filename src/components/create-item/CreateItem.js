@@ -30,4 +30,5 @@ export default class CreateItem extends Component {
     addItem() {
         this.props.onAdd(this.input.value);
     }
+
 }

@@ -9,7 +9,7 @@ export default class Item extends Component {
 
     render() {
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default" onClick={this.editItem}>
                 <div className="panel-heading">{this.props.data.title}</div>
                 <div className="panel-body">
                     {this.props.data.text}
@@ -22,6 +22,10 @@ export default class Item extends Component {
 
     removeItem() {
         this.props.onRemove(this.props.data.id);
+    }
+
+    editItem = () => {
+        this.props.onEdit(this.props.data.id);
     }
 
 }

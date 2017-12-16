@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Item from "../item/Item";
 import {connect} from "react-redux";
+import {withRouter} from 'react-router';
 
 export class Items extends Component {
 
     constructor(props) {
         super(props);
         this.onRemove = this.onRemove.bind(this);
+        this.onEdit = this.onEdit.bind(this);
     }
 
     render() {
@@ -15,7 +17,8 @@ export class Items extends Component {
             <div>
                 {
                     this.props.items.map((item) => {
-                    return <Item data={item} key={item.id} onRemove={this.onRemove}/>})
+                        return <Item data={item} key={item.id} onRemove={this.onRemove} onEdit={this.onEdit}/>
+                    })
                 }
             </div>
         );
@@ -23,6 +26,10 @@ export class Items extends Component {
 
     onRemove(id) {
         this.props.removeItem(id);
+    }
+
+    onEdit(id) {
+        this.props.history.push('/edit/' + id);
     }
 }
 
@@ -43,4 +50,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Items));

@@ -8,25 +8,26 @@ import CreateItem from "./components/create-item/CreateItem";
 import Items from "./components/items/Items";
 
 class App extends Component {
-  render() {
-    return (
-        <div>
-            <Search/>
-            <CreateItem onAdd={this.onAddItem}/>
-            <Items/>
-        </div>
-    );
-  }
 
-  onAddItem(text) {
-      console.log(text);
-  }
-}
-
-function mapStateToProps(state, props) {
-    return {
-        items: state.items
+    constructor(props) {
+        super(props);
+        this.onAddItem = this.onAddItem.bind(this);
     }
+
+    render() {
+        return (
+            <div>
+                <Search/>
+                <CreateItem onAdd={this.onAddItem}/>
+                <Items/>
+            </div>
+        );
+    }
+
+    onAddItem(text) {
+        this.props.addItem(text);
+    }
+
 }
 
 function mapDispatchToProps(dispatch) {
@@ -34,10 +35,13 @@ function mapDispatchToProps(dispatch) {
         addItem: (text) => {
             dispatch({
                 type: 'ADD_ITEM',
-                payload: text
+                payload: {
+                    id: Date.now(),
+                    title: text
+                }
             });
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

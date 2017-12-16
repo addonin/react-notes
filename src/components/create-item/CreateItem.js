@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 export default class CreateItem extends Component {
+
     constructor(props) {
         super(props);
 
         this.addItem = this.addItem.bind(this);
     }
+
     render() {
         return (
             <div className="row">

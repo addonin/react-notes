@@ -14,7 +14,7 @@ export class Items extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 {
                     this.props.items.map((item) => {
                         return <Item data={item} key={item.id} onRemove={this.onRemove} onEdit={this.onEdit}/>

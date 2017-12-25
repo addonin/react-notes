@@ -10,8 +10,8 @@ export default class CreateItem extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-lg-6">
+            <div className="jumbotron">
+                <div className="container">
                     <div className="input-group">
                         <input type="text" className="form-control" placeholder="Text..."
                                ref={(input) => {
@@ -29,6 +29,7 @@ export default class CreateItem extends Component {
 
     addItem() {
         this.props.onAdd(this.input.value);
+        this.input.value = "";
     }
 
 }

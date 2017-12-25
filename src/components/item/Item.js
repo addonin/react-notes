@@ -5,22 +5,26 @@ export default class Item extends Component {
     constructor(props) {
         super(props);
         this.removeItem = this.removeItem.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
 
     render() {
         return (
             <div className="panel panel-default" onClick={this.editItem}>
-                <div className="panel-heading">{this.props.data.title}</div>
+                <div className="panel-heading">
+                    {this.props.data.title}
+                    <span className="glyphicon glyphicon-remove pull-right" onClick={this.removeItem} aria-hidden="true">
+                    </span>
+                </div>
                 <div className="panel-body">
                     {this.props.data.text}
                 </div>
-                <span className="glyphicon glyphicon-remove" onClick={this.removeItem} aria-hidden="true">
-                </span>
             </div>
         );
     }
 
-    removeItem() {
+    removeItem(event) {
+        event.stopPropagation();
         this.props.onRemove(this.props.data.id);
     }
 

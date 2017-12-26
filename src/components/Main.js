@@ -35,7 +35,8 @@ function mapDispatchToProps(dispatch) {
                 type: 'ADD_ITEM',
                 payload: {
                     id: Date.now(),
-                    title: text
+                    title: text,
+                    visible: true
                 }
             });
         }

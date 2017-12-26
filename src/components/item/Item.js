@@ -10,7 +10,8 @@ export default class Item extends Component {
 
     render() {
         return (
-            <div className="panel panel-default" onClick={this.editItem}>
+            <div className={"panel panel-default" + (!this.props.data.visible ? ' hide' : '')}
+                 onClick={this.editItem}>
                 <div className="panel-heading">
                     {this.props.data.title}
                     <span className="glyphicon glyphicon-remove pull-right" onClick={this.removeItem} aria-hidden="true">

@@ -12,6 +12,11 @@ export class Items extends Component {
         this.onEdit = this.onEdit.bind(this);
     }
 
+    componentDidMount() {
+        fetch('/notes')
+            .then(notes => this.setState({ items: notes }));
+    }
+
     render() {
         return (
             <div className="container">
